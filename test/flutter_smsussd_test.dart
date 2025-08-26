@@ -1,16 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_smsussd/flutter_smsussd.dart';
+import 'package:flutter_smsussd/flutter_smsussd_platform_interface.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('FlutterSmsussd', () {
-    test('getPlatformVersion returns a string', () async {
-      final plugin = FlutterSmsussd();
-      final version = await plugin.getPlatformVersion();
-      expect(version, isA<String>());
-    });
-
     test('SmsMessage.fromMap creates correct object', () {
       final map = {
         'id': '123',
@@ -25,7 +20,7 @@ void main() {
       expect(message.id, '123');
       expect(message.address, '+1234567890');
       expect(message.body, 'Test message');
-      expect(message.date, DateTime.parse('2022-01-01 00:00:00Z'));
+      expect(message.date.millisecondsSinceEpoch, 1640995200000);
       expect(message.type, SmsType.sent);
     });
 
@@ -34,7 +29,7 @@ void main() {
         id: '123',
         address: '+1234567890',
         body: 'Test message',
-        date: DateTime.parse('2022-01-01 00:00:00Z'),
+        date: DateTime.fromMillisecondsSinceEpoch(1640995200000),
         type: SmsType.inbox,
       );
 

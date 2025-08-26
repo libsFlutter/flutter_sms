@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_smsussd/flutter_smsussd_method_channel.dart';
+import 'package:flutter_smsussd/flutter_smsussd_platform_interface.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
