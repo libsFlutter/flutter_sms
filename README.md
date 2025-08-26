@@ -1,101 +1,19 @@
-# flutter_sms
+# flutter_smsussd
 
-A Flutter plugin for SMS functionality on Android platform. This plugin provides comprehensive SMS capabilities including sending messages, receiving delivery status updates, and managing incoming SMS messages.
+A Flutter plugin for sending and reading SMS messages on Android devices.
 
 ## Features
 
-### Core Functionality
+- Send SMS messages
+- Read SMS messages from device
+- Filter SMS messages by phone number
+- Request SMS permissions
+- Check SMS permission status
+- Support for multipart SMS messages
 
-1. **Send Outgoing SMS** - Send text messages to phone numbers
-2. **SMS Delivery Status Events** - Receive real-time status updates for sent messages (delivered, failed, expired, etc.)
-3. **Get Incoming SMS List** - Retrieve stored incoming SMS messages (useful when app was inactive)
-4. **New Incoming SMS Events** - Listen for new incoming SMS messages in real-time
+## Getting Started
 
-### Platform Support
-
-- ✅ **Android** - Full implementation
-- 🔄 **iOS** - Coming soon
-- 🔄 **Web** - Coming soon
-- 🔄 **Windows** - Coming soon
-- 🔄 **macOS** - Coming soon
-- 🔄 **Linux** - Coming soon
-
-## Installation
-
-Add `flutter_sms` to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  flutter_sms: ^0.0.1
-```
-
-## Usage
-
-### Import the package
-
-```dart
-import 'package:flutter_sms/flutter_sms.dart';
-```
-
-### Send SMS
-
-```dart
-try {
-  await FlutterSms.sendSms(
-    phoneNumber: '+1234567890',
-    message: 'Hello from Flutter!',
-  );
-} catch (e) {
-  print('Failed to send SMS: $e');
-}
-```
-
-### Listen to SMS Delivery Status
-
-```dart
-FlutterSms.onSmsDeliveryStatus.listen((status) {
-  switch (status.status) {
-    case SmsDeliveryStatus.delivered:
-      print('SMS delivered successfully');
-      break;
-    case SmsDeliveryStatus.failed:
-      print('SMS delivery failed: ${status.error}');
-      break;
-    case SmsDeliveryStatus.expired:
-      print('SMS delivery expired');
-      break;
-  }
-});
-```
-
-### Get Incoming SMS List
-
-```dart
-try {
-  final List<SmsMessage> messages = await FlutterSms.getIncomingSms();
-  for (final message in messages) {
-    print('From: ${message.sender}');
-    print('Message: ${message.body}');
-    print('Date: ${message.date}');
-  }
-} catch (e) {
-  print('Failed to get SMS messages: $e');
-}
-```
-
-### Listen to New Incoming SMS
-
-```dart
-FlutterSms.onNewSmsReceived.listen((message) {
-  print('New SMS from: ${message.sender}');
-  print('Message: ${message.body}');
-  print('Date: ${message.date}');
-});
-```
-
-## Permissions
-
-### Android
+### Android Setup
 
 Add the following permissions to your `android/app/src/main/AndroidManifest.xml`:
 
@@ -103,106 +21,115 @@ Add the following permissions to your `android/app/src/main/AndroidManifest.xml`
 <uses-permission android:name="android.permission.SEND_SMS" />
 <uses-permission android:name="android.permission.RECEIVE_SMS" />
 <uses-permission android:name="android.permission.READ_SMS" />
+<uses-permission android:name="android.permission.WRITE_SMS" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 ```
 
-Request runtime permissions in your app:
+### Usage
+
+1. **Check and Request Permissions**
 
 ```dart
+import 'package:flutter_smsussd/flutter_smsussd.dart';
+
+final plugin = FlutterSmsussd();
+
+// Check if SMS permissions are granted
+bool hasPermissions = await plugin.hasSmsPermissions();
+
 // Request SMS permissions
-await FlutterSms.requestPermissions();
+bool granted = await plugin.requestSmsPermissions();
 ```
 
-## API Reference
+2. **Send SMS Message**
 
-### Classes
+```dart
+// Send a single SMS
+bool success = await plugin.sendSms(
+  phoneNumber: '+1234567890',
+  message: 'Hello from Flutter!',
+);
+```
 
-#### SmsMessage
+3. **Read SMS Messages**
+
+```dart
+// Get all SMS messages
+List<SmsMessage> messages = await plugin.getSmsMessages();
+
+// Get SMS messages by phone number
+List<SmsMessage> messages = await plugin.getSmsMessagesByPhoneNumber('+1234567890');
+```
+
+4. **SMS Message Model**
+
 ```dart
 class SmsMessage {
-  final String sender;
-  final String body;
-  final DateTime date;
-  final String? id;
+  final String id;
+  final String address;      // Phone number
+  final String body;         // Message content
+  final DateTime date;       // Message timestamp
+  final SmsType type;        // Message type (inbox, sent, etc.)
 }
-```
 
-#### SmsDeliveryStatus
-```dart
-class SmsDeliveryStatus {
-  final String messageId;
-  final SmsStatus status;
-  final String? error;
+enum SmsType {
+  inbox,    // Received messages
+  sent,     // Sent messages
+  draft,    // Draft messages
+  outbox,   // Outbox messages
+  failed,   // Failed messages
+  queued,   // Queued messages
 }
-```
-
-#### SmsStatus
-```dart
-enum SmsStatus {
-  sent,
-  delivered,
-  failed,
-  expired,
-  pending
-}
-```
-
-### Methods
-
-#### sendSms
-```dart
-Future<void> sendSms({
-  required String phoneNumber,
-  required String message,
-}) async
-```
-
-#### getIncomingSms
-```dart
-Future<List<SmsMessage>> getIncomingSms() async
-```
-
-#### requestPermissions
-```dart
-Future<bool> requestPermissions() async
-```
-
-### Events
-
-#### onSmsDeliveryStatus
-```dart
-Stream<SmsDeliveryStatus> get onSmsDeliveryStatus
-```
-
-#### onNewSmsReceived
-```dart
-Stream<SmsMessage> get onNewSmsReceived
 ```
 
 ## Example
 
-See the `example/` directory for a complete working example.
+See the `example/` directory for a complete working example that demonstrates:
 
-## Getting Started
+- Permission handling
+- Sending SMS messages
+- Reading SMS messages
+- Modern Material 3 UI
+- Error handling
 
-1. Add the plugin to your `pubspec.yaml`
-2. Add required permissions to your Android manifest
-3. Request runtime permissions in your app
-4. Use the API methods and listen to events
+## Platform Support
+
+- ✅ Android
+- ❌ iOS (not supported due to Apple's restrictions)
+- ❌ Web (not supported)
+- ❌ macOS (not supported)
+- ❌ Windows (not supported)
+- ❌ Linux (not supported)
+
+## Permissions
+
+The plugin requires the following Android permissions:
+
+- `SEND_SMS`: To send SMS messages
+- `READ_SMS`: To read SMS messages from the device
+- `RECEIVE_SMS`: To receive SMS messages
+- `WRITE_SMS`: To write SMS messages (for future features)
+- `READ_PHONE_STATE`: For Android 6.0+ runtime permissions
+
+## Error Handling
+
+The plugin provides clear error messages for common scenarios:
+
+- `PERMISSION_DENIED`: SMS permissions not granted
+- `INVALID_ARGUMENTS`: Missing required parameters
+- `SMS_SEND_ERROR`: Failed to send SMS
+- `SMS_READ_ERROR`: Failed to read SMS messages
+- `NO_ACTIVITY`: No activity available for permission request
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
 ## License
 
 This project is licensed under the NativeMindNONC License - see the [LICENSE](LICENSE) file for details.
 
-## Roadmap
-
-- [ ] iOS implementation
-- [ ] Web implementation  
-- [ ] Windows implementation
-- [ ] macOS implementation
-- [ ] Linux implementation
-- [ ] USSD support (future)
-- [ ] MMS support (future)
