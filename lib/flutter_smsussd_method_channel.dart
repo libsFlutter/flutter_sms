@@ -14,4 +14,42 @@ class MethodChannelFlutterSmsussd extends FlutterSmsussdPlatform {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+
+  @override
+  Future<bool> sendSms({
+    required String phoneNumber,
+    required String message,
+  }) async {
+    final result = await methodChannel.invokeMethod<bool>('sendSms', {
+      'phoneNumber': phoneNumber,
+      'message': message,
+    });
+    return result ?? false;
+  }
+
+  @override
+  Future<List<SmsMessage>> getSmsMessages() async {
+    final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessages') ?? [];
+    return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+  }
+
+  @override
+  Future<List<SmsMessage>> getSmsMessagesByPhoneNumber(String phoneNumber) async {
+    final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessagesByPhoneNumber', {
+      'phoneNumber': phoneNumber,
+    }) ?? [];
+    return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+  }
+
+  @override
+  Future<bool> requestSmsPermissions() async {
+    final result = await methodChannel.invokeMethod<bool>('requestSmsPermissions');
+    return result ?? false;
+  }
+
+  @override
+  Future<bool> hasSmsPermissions() async {
+    final result = await methodChannel.invokeMethod<bool>('hasSmsPermissions');
+    return result ?? false;
+  }
 }
