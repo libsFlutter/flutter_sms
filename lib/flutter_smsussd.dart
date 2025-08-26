@@ -1,6 +1,9 @@
 
 import 'flutter_smsussd_platform_interface.dart';
 
+// Export the SMS models for public use
+export 'flutter_smsussd_platform_interface.dart' show SmsMessage, SmsType;
+
 class FlutterSmsussd {
   Future<String?> getPlatformVersion() {
     return FlutterSmsussdPlatform.instance.getPlatformVersion();

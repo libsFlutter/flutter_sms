@@ -96,12 +96,16 @@ class FlutterSmsussdPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
       
       if (parts.size > 1) {
         // Send multipart SMS
-        val sentIntents = ArrayList<android.content.Intent>()
-        val deliveredIntents = ArrayList<android.content.Intent>()
+        val sentIntents = ArrayList<android.app.PendingIntent>()
+        val deliveredIntents = ArrayList<android.app.PendingIntent>()
         
         for (i in parts.indices) {
-          val sentIntent = android.content.Intent("SMS_SENT")
-          val deliveredIntent = android.content.Intent("SMS_DELIVERED")
+          val sentIntent = android.app.PendingIntent.getBroadcast(
+            context, 0, android.content.Intent("SMS_SENT"), android.app.PendingIntent.FLAG_IMMUTABLE
+          )
+          val deliveredIntent = android.app.PendingIntent.getBroadcast(
+            context, 0, android.content.Intent("SMS_DELIVERED"), android.app.PendingIntent.FLAG_IMMUTABLE
+          )
           
           sentIntents.add(sentIntent)
           deliveredIntents.add(deliveredIntent)
