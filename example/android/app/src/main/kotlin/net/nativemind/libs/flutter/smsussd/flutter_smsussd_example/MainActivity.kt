@@ -1,4 +1,4 @@
-package net.nativemind.libs.flutter.flutter_sms_example
+package net.nativemind.libs.flutter.smsussd.flutter_smsussd_example
 
 import io.flutter.embedding.android.FlutterActivity
 

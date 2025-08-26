@@ -6,15 +6,15 @@
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:web/web.dart' as web;
 
-import 'flutter_sms_platform_interface.dart';
+import 'flutter_smsussd_platform_interface.dart';
 
-/// A web implementation of the FlutterSmsPlatform of the FlutterSms plugin.
-class FlutterSmsWeb extends FlutterSmsPlatform {
-  /// Constructs a FlutterSmsWeb
-  FlutterSmsWeb();
+/// A web implementation of the FlutterSmsussdPlatform of the FlutterSmsussd plugin.
+class FlutterSmsussdWeb extends FlutterSmsussdPlatform {
+  /// Constructs a FlutterSmsussdWeb
+  FlutterSmsussdWeb();
 
   static void registerWith(Registrar registrar) {
-    FlutterSmsPlatform.instance = FlutterSmsWeb();
+    FlutterSmsussdPlatform.instance = FlutterSmsussdWeb();
   }
 
   /// Returns a [String] containing the version of the platform.

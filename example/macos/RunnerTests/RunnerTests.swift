@@ -3,7 +3,7 @@ import FlutterMacOS
 import XCTest
 
 
-@testable import flutter_sms
+@testable import flutter_smsussd
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //
@@ -12,7 +12,7 @@ import XCTest
 class RunnerTests: XCTestCase {
 
   func testGetPlatformVersion() {
-    let plugin = FlutterSmsPlugin()
+    let plugin = FlutterSmsussdPlugin()
 
     let call = FlutterMethodCall(methodName: "getPlatformVersion", arguments: [])
 

@@ -1,17 +1,17 @@
-import Flutter
-import UIKit
+import Cocoa
+import FlutterMacOS
 
-public class FlutterSmsPlugin: NSObject, FlutterPlugin {
+public class FlutterSmsussdPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_sms", binaryMessenger: registrar.messenger())
-    let instance = FlutterSmsPlugin()
+    let channel = FlutterMethodChannel(name: "flutter_smsussd", binaryMessenger: registrar.messenger)
+    let instance = FlutterSmsussdPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
     case "getPlatformVersion":
-      result("iOS " + UIDevice.current.systemVersion)
+      result("macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
     default:
       result(FlutterMethodNotImplemented)
     }

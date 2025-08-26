@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "net.nativemind.libs.flutter.flutter_sms_example"
+    namespace = "net.nativemind.libs.flutter.smsussd.flutter_smsussd_example"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "net.nativemind.libs.flutter.flutter_sms_example"
+        applicationId = "net.nativemind.libs.flutter.smsussd.flutter_smsussd_example"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

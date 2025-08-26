@@ -8,9 +8,9 @@
 #include <string>
 #include <variant>
 
-#include "flutter_sms_plugin.h"
+#include "flutter_smsussd_plugin.h"
 
-namespace flutter_sms {
+namespace flutter_smsussd {
 namespace test {
 
 namespace {
@@ -22,8 +22,8 @@ using flutter::MethodResultFunctions;
 
 }  // namespace
 
-TEST(FlutterSmsPlugin, GetPlatformVersion) {
-  FlutterSmsPlugin plugin;
+TEST(FlutterSmsussdPlugin, GetPlatformVersion) {
+  FlutterSmsussdPlugin plugin;
   // Save the reply value from the success callback.
   std::string result_string;
   plugin.HandleMethodCall(
@@ -40,4 +40,4 @@ TEST(FlutterSmsPlugin, GetPlatformVersion) {
 }
 
 }  // namespace test
-}  // namespace flutter_sms
+}  // namespace flutter_smsussd

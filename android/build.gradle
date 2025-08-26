@@ -1,4 +1,4 @@
-group = "net.nativemind.libs.flutter.flutter_sms"
+group = "net.nativemind.libs.flutter.smsussd.flutter_smsussd"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -25,7 +25,7 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace = "net.nativemind.libs.flutter.flutter_sms"
+    namespace = "net.nativemind.libs.flutter.smsussd.flutter_smsussd"
 
     compileSdk = 35
 

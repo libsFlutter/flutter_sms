@@ -1,4 +1,4 @@
-name: flutter_sms
+name: flutter_smsussd
 description: "A new Flutter plugin project."
 version: 0.0.1
 homepage:
@@ -38,19 +38,19 @@ flutter:
   plugin:
     platforms:
       android:
-        package: net.nativemind.libs.flutter.flutter_sms
-        pluginClass: FlutterSmsPlugin
+        package: net.nativemind.libs.flutter.smsussd.flutter_smsussd
+        pluginClass: FlutterSmsussdPlugin
       ios:
-        pluginClass: FlutterSmsPlugin
+        pluginClass: FlutterSmsussdPlugin
       linux:
-        pluginClass: FlutterSmsPlugin
+        pluginClass: FlutterSmsussdPlugin
       macos:
-        pluginClass: FlutterSmsPlugin
+        pluginClass: FlutterSmsussdPlugin
       windows:
-        pluginClass: FlutterSmsPluginCApi
+        pluginClass: FlutterSmsussdPluginCApi
       web:
-        pluginClass: FlutterSmsWeb
-        fileName: flutter_sms_web.dart
+        pluginClass: FlutterSmsussdWeb
+        fileName: flutter_smsussd_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

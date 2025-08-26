@@ -1,24 +1,24 @@
-#ifndef FLUTTER_PLUGIN_FLUTTER_SMS_PLUGIN_H_
-#define FLUTTER_PLUGIN_FLUTTER_SMS_PLUGIN_H_
+#ifndef FLUTTER_PLUGIN_FLUTTER_SMSUSSD_PLUGIN_H_
+#define FLUTTER_PLUGIN_FLUTTER_SMSUSSD_PLUGIN_H_
 
 #include <flutter/method_channel.h>
 #include <flutter/plugin_registrar_windows.h>
 
 #include <memory>
 
-namespace flutter_sms {
+namespace flutter_smsussd {
 
-class FlutterSmsPlugin : public flutter::Plugin {
+class FlutterSmsussdPlugin : public flutter::Plugin {
  public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-  FlutterSmsPlugin();
+  FlutterSmsussdPlugin();
 
-  virtual ~FlutterSmsPlugin();
+  virtual ~FlutterSmsussdPlugin();
 
   // Disallow copy and assign.
-  FlutterSmsPlugin(const FlutterSmsPlugin&) = delete;
-  FlutterSmsPlugin& operator=(const FlutterSmsPlugin&) = delete;
+  FlutterSmsussdPlugin(const FlutterSmsussdPlugin&) = delete;
+  FlutterSmsussdPlugin& operator=(const FlutterSmsussdPlugin&) = delete;
 
   // Called when a method is called on this plugin's channel from Dart.
   void HandleMethodCall(
@@ -26,6 +26,6 @@ class FlutterSmsPlugin : public flutter::Plugin {
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
 };
 
-}  // namespace flutter_sms
+}  // namespace flutter_smsussd
 
-#endif  // FLUTTER_PLUGIN_FLUTTER_SMS_PLUGIN_H_
+#endif  // FLUTTER_PLUGIN_FLUTTER_SMSUSSD_PLUGIN_H_

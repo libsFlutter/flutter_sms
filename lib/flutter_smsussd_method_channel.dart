@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_sms_platform_interface.dart';
+import 'flutter_smsussd_platform_interface.dart';
 
-/// An implementation of [FlutterSmsPlatform] that uses method channels.
-class MethodChannelFlutterSms extends FlutterSmsPlatform {
+/// An implementation of [FlutterSmsussdPlatform] that uses method channels.
+class MethodChannelFlutterSmsussd extends FlutterSmsussdPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('flutter_sms');
+  final methodChannel = const MethodChannel('flutter_smsussd');
 
   @override
   Future<String?> getPlatformVersion() async {

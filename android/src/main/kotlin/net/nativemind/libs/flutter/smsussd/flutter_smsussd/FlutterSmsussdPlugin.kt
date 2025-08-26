@@ -1,4 +1,4 @@
-package net.nativemind.libs.flutter.flutter_sms
+package net.nativemind.libs.flutter.smsussd.flutter_smsussd
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -6,8 +6,8 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
-/** FlutterSmsPlugin */
-class FlutterSmsPlugin: FlutterPlugin, MethodCallHandler {
+/** FlutterSmsussdPlugin */
+class FlutterSmsussdPlugin: FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -15,7 +15,7 @@ class FlutterSmsPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_sms")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_smsussd")
     channel.setMethodCallHandler(this)
   }
 

@@ -1,12 +1,12 @@
-#include "include/flutter_sms/flutter_sms_plugin_c_api.h"
+#include "include/flutter_smsussd/flutter_smsussd_plugin_c_api.h"
 
 #include <flutter/plugin_registrar_windows.h>
 
-#include "flutter_sms_plugin.h"
+#include "flutter_smsussd_plugin.h"
 
-void FlutterSmsPluginCApiRegisterWithRegistrar(
+void FlutterSmsussdPluginCApiRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar) {
-  flutter_sms::FlutterSmsPlugin::RegisterWithRegistrar(
+  flutter_smsussd::FlutterSmsussdPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarManager::GetInstance()
           ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
 }

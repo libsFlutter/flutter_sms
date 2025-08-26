@@ -1,4 +1,4 @@
-#include "flutter_sms_plugin.h"
+#include "flutter_smsussd_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -13,17 +13,17 @@
 #include <memory>
 #include <sstream>
 
-namespace flutter_sms {
+namespace flutter_smsussd {
 
 // static
-void FlutterSmsPlugin::RegisterWithRegistrar(
+void FlutterSmsussdPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "flutter_sms",
+          registrar->messenger(), "flutter_smsussd",
           &flutter::StandardMethodCodec::GetInstance());
 
-  auto plugin = std::make_unique<FlutterSmsPlugin>();
+  auto plugin = std::make_unique<FlutterSmsussdPlugin>();
 
   channel->SetMethodCallHandler(
       [plugin_pointer = plugin.get()](const auto &call, auto result) {
@@ -33,11 +33,11 @@ void FlutterSmsPlugin::RegisterWithRegistrar(
   registrar->AddPlugin(std::move(plugin));
 }
 
-FlutterSmsPlugin::FlutterSmsPlugin() {}
+FlutterSmsussdPlugin::FlutterSmsussdPlugin() {}
 
-FlutterSmsPlugin::~FlutterSmsPlugin() {}
+FlutterSmsussdPlugin::~FlutterSmsussdPlugin() {}
 
-void FlutterSmsPlugin::HandleMethodCall(
+void FlutterSmsussdPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
   if (method_call.method_name().compare("getPlatformVersion") == 0) {
@@ -56,4 +56,4 @@ void FlutterSmsPlugin::HandleMethodCall(
   }
 }
 
-}  // namespace flutter_sms
+}  // namespace flutter_smsussd

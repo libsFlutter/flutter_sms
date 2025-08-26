@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = flutter_sms_example
+PRODUCT_NAME = flutter_smsussd_example
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = net.nativemind.libs.flutter.flutterSmsExample
+PRODUCT_BUNDLE_IDENTIFIER = net.nativemind.libs.flutter.smsussd.flutterSmsussdExample
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 net.nativemind.libs.flutter. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 net.nativemind.libs.flutter.smsussd. All rights reserved.

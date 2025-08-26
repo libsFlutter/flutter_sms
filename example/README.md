@@ -1,6 +1,6 @@
-# flutter_sms_example
+# flutter_smsussd_example
 
-Demonstrates how to use the flutter_sms plugin.
+Demonstrates how to use the flutter_smsussd plugin.
 
 ## Getting Started
 

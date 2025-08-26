@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_sms/flutter_sms_method_channel.dart';
+import 'package:flutter_smsussd/flutter_smsussd_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFlutterSms platform = MethodChannelFlutterSms();
-  const MethodChannel channel = MethodChannel('flutter_sms');
+  MethodChannelFlutterSmsussd platform = MethodChannelFlutterSmsussd();
+  const MethodChannel channel = MethodChannel('flutter_smsussd');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
