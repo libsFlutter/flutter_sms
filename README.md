@@ -45,6 +45,8 @@ bool granted = await plugin.requestSmsPermissions();
 
 ```dart
 // Send a single SMS
+// On Android: Sends SMS directly
+// On iOS: Opens native SMS composer with pre-filled content
 bool success = await plugin.sendSms(
   phoneNumber: '+1234567890',
   message: 'Hello from Flutter!',
@@ -82,24 +84,48 @@ enum SmsType {
 }
 ```
 
+## Platform-Specific Behavior
+
+### Android
+- ✅ Direct SMS sending
+- ✅ SMS message reading
+- ✅ Permission handling
+- ✅ Multipart SMS support
+
+### iOS
+- ⚠️ Opens native SMS composer (user must manually send)
+- ❌ Cannot read SMS messages
+- ✅ No special permissions required
+- ✅ Pre-fills recipient and message content
+
 ## Example
 
 See the `example/` directory for a complete working example that demonstrates:
 
 - Permission handling
 - Sending SMS messages
-- Reading SMS messages
+- Reading SMS messages (Android only)
 - Modern Material 3 UI
 - Error handling
+- Platform-specific behavior
 
 ## Platform Support
 
-- ✅ Android
-- ❌ iOS (not supported due to Apple's restrictions)
+- ✅ Android (full SMS functionality)
+- ⚠️ iOS (limited SMS functionality - can only open native SMS composer)
 - ❌ Web (not supported)
 - ❌ macOS (not supported)
 - ❌ Windows (not supported)
 - ❌ Linux (not supported)
+
+### iOS Limitations
+
+Due to Apple's strict security policies, iOS has the following limitations:
+
+- ❌ **Cannot read SMS messages** - No API access to SMS database
+- ❌ **Cannot send SMS programmatically** - No direct SMS sending API
+- ✅ **Can open native SMS composer** - Opens Messages app with pre-filled content
+- ✅ **No special permissions required** - Uses standard iOS MessageUI framework
 
 ## Permissions
 

@@ -20,25 +20,50 @@ class MethodChannelFlutterSmsussd extends FlutterSmsussdPlatform {
     required String phoneNumber,
     required String message,
   }) async {
-    final result = await methodChannel.invokeMethod<bool>('sendSms', {
-      'phoneNumber': phoneNumber,
-      'message': message,
-    });
-    return result ?? false;
+    try {
+      final result = await methodChannel.invokeMethod<bool>('sendSms', {
+        'phoneNumber': phoneNumber,
+        'message': message,
+      });
+      return result ?? false;
+    } on PlatformException catch (e) {
+      if (e.code == 'SMS_NOT_AVAILABLE') {
+        throw UnsupportedError('SMS is not available on this device');
+      } else if (e.code == 'NO_VIEW_CONTROLLER') {
+        throw StateError('No view controller available to present SMS composer');
+      } else if (e.code == 'SMS_SEND_ERROR') {
+        throw StateError('Failed to send SMS: ${e.message}');
+      }
+      rethrow;
+    }
   }
 
   @override
   Future<List<SmsMessage>> getSmsMessages() async {
-    final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessages') ?? [];
-    return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+    try {
+      final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessages') ?? [];
+      return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+    } on PlatformException catch (e) {
+      if (e.code == 'NOT_SUPPORTED') {
+        throw UnsupportedError('Reading SMS messages is not supported on this platform');
+      }
+      rethrow;
+    }
   }
 
   @override
   Future<List<SmsMessage>> getSmsMessagesByPhoneNumber(String phoneNumber) async {
-    final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessagesByPhoneNumber', {
-      'phoneNumber': phoneNumber,
-    }) ?? [];
-    return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+    try {
+      final List<dynamic> result = await methodChannel.invokeMethod<List<dynamic>>('getSmsMessagesByPhoneNumber', {
+        'phoneNumber': phoneNumber,
+      }) ?? [];
+      return result.map((item) => SmsMessage.fromMap(Map<String, dynamic>.from(item))).toList();
+    } on PlatformException catch (e) {
+      if (e.code == 'NOT_SUPPORTED') {
+        throw UnsupportedError('Reading SMS messages is not supported on this platform');
+      }
+      rethrow;
+    }
   }
 
   @override
