@@ -77,21 +77,26 @@ class _MyAppState extends State<MyApp> {
 
     try {
       final granted = await _flutterSmsussdPlugin.requestSmsPermissions();
+      if (!mounted) return;
+      
       setState(() {
         _hasPermissions = granted;
         _isLoading = false;
       });
       
       if (granted) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('SMS permissions granted!')),
         );
       } else {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('SMS permissions denied!')),
         );
       }
     } on PlatformException catch (e) {
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
@@ -119,6 +124,7 @@ class _MyAppState extends State<MyApp> {
         message: _messageController.text,
       );
 
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
@@ -134,6 +140,7 @@ class _MyAppState extends State<MyApp> {
         );
       }
     } on PlatformException catch (e) {
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
@@ -150,11 +157,13 @@ class _MyAppState extends State<MyApp> {
 
     try {
       final messages = await _flutterSmsussdPlugin.getSmsMessages();
+      if (!mounted) return;
       setState(() {
         _smsMessages = messages;
         _isLoading = false;
       });
     } on PlatformException catch (e) {
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
@@ -178,11 +187,13 @@ class _MyAppState extends State<MyApp> {
 
     try {
       final messages = await _flutterSmsussdPlugin.getSmsMessagesByPhoneNumber(_phoneController.text);
+      if (!mounted) return;
       setState(() {
         _smsMessages = messages;
         _isLoading = false;
       });
     } on PlatformException catch (e) {
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
