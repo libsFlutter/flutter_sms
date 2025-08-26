@@ -1,3 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="net.nativemind.libs.flutter.smsussd.flutter_smsussd">
+  
+  <!-- SMS permissions -->
+  <uses-permission android:name="android.permission.SEND_SMS" />
+  <uses-permission android:name="android.permission.RECEIVE_SMS" />
+  <uses-permission android:name="android.permission.READ_SMS" />
+  <uses-permission android:name="android.permission.WRITE_SMS" />
+  
+  <!-- For Android 6.0+ runtime permissions -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  
 </manifest>
